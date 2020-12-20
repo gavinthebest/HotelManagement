@@ -13,5 +13,6 @@ namespace YunruiXie.HotelManagement.Core.ServiceInterfaces
         Task<RoomResponseModel> CreateRoom(RoomRequest roomCreateRequest);
         Task<RoomResponseModel> UpdateRoom(RoomRequest roomUpdateRequest);
         Task DeleteRoom(int roomId);
+        Task<RoomResponseModel> GetRoomDetails(int id);
     }
 }

@@ -40,7 +40,8 @@ namespace YunruiXie.HotelManagement.Infrastructure.Data
         private void ConfigureRoomtype(EntityTypeBuilder<ROOMTYPE> modelBuilder)
         {
             modelBuilder.HasMany(t => t.Rooms)
-                        .WithOne(t => t.Roomtype);
+                        .WithOne(t => t.Roomtype)
+                        .HasForeignKey(t => t.RTCODE);
         }
         public DbSet<ROOM> Rooms { get; set; }
         public DbSet<CUSTOMER> Customers { get; set; }

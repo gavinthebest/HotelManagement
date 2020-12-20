@@ -13,5 +13,6 @@ namespace YunruiXie.HotelManagement.Core.ServiceInterfaces
         Task<ServiceResponseModel> CreateService(ServiceRequest serviceCreateRequest);
         Task<ServiceResponseModel> UpdateService(ServiceRequest serviceUpdateRequest);
         Task DeleteService(int serviceId);
+        Task<ServiceResponseModel> GetServiceDetails(int id);
     }
 }

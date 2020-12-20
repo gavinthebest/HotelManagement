@@ -14,7 +14,7 @@ namespace YunruiXie.HotelManagement.Infrastructure.Repositories
         public RoomtypeRepository(HotelManagementDbContext dbContext) : base(dbContext)
         {
         }
-        public async Task<ROOMTYPE> GetRoomtypeById(int id)
+        public async Task<ROOMTYPE> GetRoomtypeById(int? id)
         {
             return await _dbContext.Roomtypes.FirstOrDefaultAsync(rt => rt.Id == id);
         }

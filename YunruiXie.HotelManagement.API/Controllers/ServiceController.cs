@@ -42,6 +42,17 @@ namespace YunruiXie.HotelManagement.API.Controllers
             }
             return Ok(services);
         }
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetServiceDetails(int id)
+        {
+            var service = await _serviceService.GetServiceDetails(id);
+            if (service == null)
+            {
+                return NotFound("No Service Found");
+            }
+            return Ok(service);
+        }
         [HttpDelete]
         [Route("delete")]
         public async Task DeleteService(int id)

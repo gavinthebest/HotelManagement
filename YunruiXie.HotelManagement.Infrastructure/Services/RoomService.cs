@@ -32,6 +32,10 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
             var dbRoom = await _roomRepository.GetRoomById(roomCreateRequest.Id);
             if (dbRoom != null && dbRoom.Id == roomCreateRequest.Id)
                 throw new Exception("Room Already Exists");
+            //If roomtype code not exists, throw exception
+            var dbRoomtype = await _roomtypeRepository.GetRoomtypeById(roomCreateRequest.RTCODE);
+            if (dbRoomtype == null)
+                throw new Exception("Roomtype Not Exists");
 
             //When creating a room, the default value of booking status should be false
             var room = new ROOM
@@ -83,13 +87,31 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
             }
             return responses;
         }
+        public async Task<RoomResponseModel> GetRoomDetails(int id)
+        {
+            var room = await _roomRepository.GetRoomById(id);
+            if (room == null) throw new Exception("Room " + id + " Not Exists");
 
+            var services = await _serviceRepository.GetServicesByRoom(room.Id);
+            var response = new RoomResponseModel
+            {
+                Id = room.Id,
+                RTCODE = room.RTCODE,
+                STATUS = room.STATUS,
+                Services = (List<ServiceResponseModel>)services
+            };
+            return response;
+        }
         public async Task<RoomResponseModel> UpdateRoom(RoomRequest roomUpdateRequest)
         {
             //If room not exists, throw exception
             var dbRoom = await _roomRepository.GetRoomById(roomUpdateRequest.Id);
             if (dbRoom != null && dbRoom.Id == roomUpdateRequest.Id)
                 throw new Exception("Room Not Exists");
+            //If roomtype code not exists, throw exception
+            var dbRoomtype = await _roomtypeRepository.GetRoomtypeById(roomUpdateRequest.RTCODE);
+            if (dbRoomtype == null)
+                throw new Exception("Roomtype Not Exists");
 
             var room = new ROOM
             {

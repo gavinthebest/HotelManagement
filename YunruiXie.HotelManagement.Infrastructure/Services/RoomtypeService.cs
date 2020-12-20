@@ -68,7 +68,19 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
             }
             return responses;
         }
+        public async Task<RoomtypeResponseModel> GetRoomtypeDetails(int id)
+        {
+            var roomtype = await _roomtypeRepository.GetRoomtypeById(id);
+            if (roomtype == null) throw new Exception("Roomtype " + id + " Not Exists");
 
+            var response = new RoomtypeResponseModel
+            {
+                Id = roomtype.Id,
+                RTDESC = roomtype.RTDESC,
+                Rent = roomtype.Rent,
+            };
+            return response;
+        }
         public async Task<RoomtypeResponseModel> UpdateRoomtype(RoomtypeRequest roomtypeUpdateRequest)
         {
             //If there there is not a roomtype exists with this Id, throw exception

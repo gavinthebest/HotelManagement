@@ -81,7 +81,21 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
             }
             return responses;
         }
+        public async Task<ServiceResponseModel> GetServiceDetails(int id)
+        {
+            var service = await _serviceRepository.GetServiceById(id);
+            if (service == null) throw new Exception("Service " + id + " Not Exists");
 
+            var response = new ServiceResponseModel
+            {
+                Id = service.Id,
+                ROOMNO = service.ROOMNO,
+                SDESC = service.SDESC,
+                AMOUNT = service.AMOUNT,
+                ServiceDate = service.ServiceDate
+            };
+            return response;
+        }
         public async Task<ServiceResponseModel> UpdateService(ServiceRequest serviceUpdateRequest)
         {            
             //If there there is not a service exists with this Id, throw exception
