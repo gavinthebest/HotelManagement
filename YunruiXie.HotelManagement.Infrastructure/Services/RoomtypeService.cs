@@ -49,6 +49,13 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
             //If roomtype not exists, throw exception
             var roomtype = await _roomtypeRepository.GetRoomtypeById(roomtypeId);
             if (roomtype == null) throw new Exception("Room Type " + roomtypeId + " Not Exists");
+
+
+            //If there is already a room exists of this roomtype, throw exception
+            var dbRoom = await _roomRepository.GetRoomByRTCode(roomtypeId);
+            if (dbRoom != null && dbRoom.RTCODE == roomtypeId)
+                throw new Exception("Roomtype Exists, Cannot Delete Room");
+
             await _roomtypeRepository.DeleteAsync(roomtype);
         }
 

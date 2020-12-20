@@ -54,7 +54,7 @@ namespace YunruiXie.HotelManagement.API.Controllers
             return Ok(service);
         }
         [HttpDelete]
-        [Route("delete")]
+        [Route("delete/{id:int}")]
         public async Task DeleteService(int id)
         {
             await _serviceService.DeleteService(id);

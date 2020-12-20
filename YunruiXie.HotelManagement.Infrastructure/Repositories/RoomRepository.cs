@@ -19,5 +19,10 @@ namespace YunruiXie.HotelManagement.Infrastructure.Repositories
         {
             return await _dbContext.Rooms.FirstOrDefaultAsync(r => r.Id == id);
         }
+
+        public async Task<ROOM> GetRoomByRTCode(int id)
+        {
+            return await _dbContext.Rooms.FirstOrDefaultAsync(r => r.RTCODE == id);
+        }
     }
 }

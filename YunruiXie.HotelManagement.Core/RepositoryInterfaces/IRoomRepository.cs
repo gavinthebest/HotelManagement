@@ -9,5 +9,6 @@ namespace YunruiXie.HotelManagement.Core.RepositoryInterfaces
     public interface IRoomRepository : IAsyncRepository<ROOM>
     {
         Task<ROOM> GetRoomById(int? id);
+        Task<ROOM> GetRoomByRTCode(int id);
     }
 }

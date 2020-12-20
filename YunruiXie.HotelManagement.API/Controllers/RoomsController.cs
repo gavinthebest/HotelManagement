@@ -52,7 +52,7 @@ namespace YunruiXie.HotelManagement.API.Controllers
             return Ok(room);
         }
         [HttpDelete]
-        [Route("delete")]
+        [Route("delete/{id:int}")]
         public async Task DeleteRoom(int id)
         {
              await _roomService.DeleteRoom(id);
