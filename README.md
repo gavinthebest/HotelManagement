@@ -4,11 +4,11 @@ this project is an Angular/.NET project for hotel reservation and data managemen
 
 ## Frontend
 
-This project uses Angular CLI version 11 with HTML, CSS and typescript. ngBoostrap is used for UI creation.
+The project HotelManagementSPA uses Angular CLI version 11 with HTML, CSS and typescript. ngBoostrap is used for UI creation.
 
 ## Backend
 
-This project uses .NET Web Core 5 for backend projects core, infrastructure and API. Local database is connected for fetching data.
+This backend solution HotelManagement uses .NET Web Core 5 for projects core, infrastructure and API. Local database is connected for fetching data.
 
 ## Build and Run
 
