@@ -25,8 +25,8 @@ namespace YunruiXie.HotelManagement.API.Controllers
             return Ok(customer);
         }
         [HttpPut]
-        [Route("update/{id:int}")]
-        public async Task<IActionResult> UpdateCustomer(int id, CustomerRequest customerUpdateRequest)
+        [Route("update")]
+        public async Task<IActionResult> UpdateCustomer(CustomerRequest customerUpdateRequest)
         {
             var customer = await _customerService.UpdateCustomer(customerUpdateRequest);
             return Ok(customer);

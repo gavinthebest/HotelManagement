@@ -109,15 +109,12 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
                 if (dbRoom == null) throw new Exception("The Room You Ask To Have Service Does Not Exist");
             }
 
-            var service = new SERVICE
-            {
-                Id = serviceUpdateRequest.Id,
-                ROOMNO = serviceUpdateRequest.ROOMNO,
-                SDESC = serviceUpdateRequest.SDESC,
-                AMOUNT = serviceUpdateRequest.AMOUNT,
-                ServiceDate = serviceUpdateRequest.ServiceDate
-            };
-            var updatedService = await _serviceRepository.UpdateAsync(service);
+            dbService.ROOMNO = serviceUpdateRequest.ROOMNO;
+            dbService.SDESC = serviceUpdateRequest.SDESC;
+            dbService.AMOUNT = serviceUpdateRequest.AMOUNT;
+            dbService.ServiceDate = serviceUpdateRequest.ServiceDate;
+
+            var updatedService = await _serviceRepository.UpdateAsync(dbService);
             var response = new ServiceResponseModel
             {
                 Id = updatedService.Id,

@@ -188,21 +188,18 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
                 await _roomRepository.UpdateAsync(dbRoom);
             }
 
-            // Then create the new customer
-            var newCustomer = new CUSTOMER
-            {
-                Id = customerUpdateRequest.Id,
-                ROOMNO = customerUpdateRequest.ROOMNO,
-                CNAME = customerUpdateRequest.CNAME,
-                ADDRESS = customerUpdateRequest.ADDRESS,
-                PHONE = customerUpdateRequest.PHONE,
-                EMAIL = customerUpdateRequest.EMAIL,
-                CHECKIN = customerUpdateRequest.CHECKIN,
-                TotalPERSONS = customerUpdateRequest.TotalPERSONS,
-                BookingDays = customerUpdateRequest.BookingDays,
-                ADVANCE = customerUpdateRequest.ADVANCE
-            };
-            var updatedCustomer = await _customerRepository.UpdateAsync(newCustomer);
+            // Then update the customer
+            customer.Id = customerUpdateRequest.Id;
+            customer.ROOMNO = customerUpdateRequest.ROOMNO;
+            customer.CNAME = customerUpdateRequest.CNAME;
+            customer.ADDRESS = customerUpdateRequest.ADDRESS;
+            customer.PHONE = customerUpdateRequest.PHONE;
+            customer.EMAIL = customerUpdateRequest.EMAIL;
+            customer.CHECKIN = customerUpdateRequest.CHECKIN;
+            customer.TotalPERSONS = customerUpdateRequest.TotalPERSONS;
+            customer.BookingDays = customerUpdateRequest.BookingDays;
+            customer.ADVANCE = customerUpdateRequest.ADVANCE;
+            var updatedCustomer = await _customerRepository.UpdateAsync(customer);
 
             // Create response model to return
             var response = new CustomerResponseModel

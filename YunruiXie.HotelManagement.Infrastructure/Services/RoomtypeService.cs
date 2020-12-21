@@ -94,13 +94,10 @@ namespace YunruiXie.HotelManagement.Infrastructure.Services
             var dbRoomtype = await _roomtypeRepository.GetRoomtypeById(roomtypeUpdateRequest.Id);
             if (dbRoomtype == null) throw new Exception("Service " + roomtypeUpdateRequest.Id + " Not Exists");
 
-            var roomtype = new ROOMTYPE
-            {
-                Id = roomtypeUpdateRequest.Id,
-                RTDESC = roomtypeUpdateRequest.RTDESC,
-                Rent = roomtypeUpdateRequest.Rent,
-            };
-            var updatedRoomtype = await _roomtypeRepository.UpdateAsync(roomtype);
+            dbRoomtype.RTDESC = roomtypeUpdateRequest.RTDESC;
+            dbRoomtype.Rent = roomtypeUpdateRequest.Rent;
+
+            var updatedRoomtype = await _roomtypeRepository.UpdateAsync(dbRoomtype);
             var response = new RoomtypeResponseModel
             {
                 Id = updatedRoomtype.Id,
